@@ -1,9 +1,13 @@
 import toggleTheme from "./scripts/darkTheme";
-import { darkThemeToggleElement, inputElement, taskList } from "./scripts/elements";
+import {
+  darkThemeToggleElement,
+  inputElement,
+  taskList,
+  addButton,
+  getDeletButtons,
+} from "./scripts/elements";
 //DArk Theme
 darkThemeToggleElement.addEventListener("click", toggleTheme);
-// Add Task
-const addButton = document.querySelector(".TaskSearchBar__button");
 
 const fetchData = (key) => {
   const data = localStorage.getItem(key);
@@ -40,6 +44,25 @@ const renderTaskList = (tasks) => {
   inputElement.focus();
 };
 
+const initTasks = () => {
+  getDeletButtons().forEach((icon, index) => {
+    icon.addEventListener("click", () => deletTask(index));
+  });
+};
+
+// Delet Task
+
+const deletTask = (index) => {
+  const anwser = confirm("Are you sure you want to delete");
+  if (!anwser) return;
+
+  const tasks = fetchData("tasks");
+  tasks.splice(index, 1);
+  saveToDb("tasks", tasks);
+  renderTaskList(tasks);
+  initTasks();
+};
+
 // add task
 const addTask = (e) => {
   e.preventDefault();
@@ -60,6 +83,7 @@ const addTask = (e) => {
   saveToDb("tasks", tasks);
 
   renderTaskList(tasks);
+  initTasks();
 };
 
 // add task event
