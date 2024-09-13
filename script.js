@@ -1,12 +1,17 @@
-import toggleTheme from "./scripts/darkTheme";
 import {
   darkThemeToggleElement,
   inputElement,
   taskList,
   addButton,
   getDeletButtons,
+  appElement,
 } from "./scripts/elements";
 //DArk Theme
+
+function toggleTheme() {
+  appElement.classList.toggle("App--isDark");
+  saveToDb("darkModeFlag", appElement.classList.contains("App--isDark"));
+}
 darkThemeToggleElement.addEventListener("click", toggleTheme);
 
 const fetchData = (key) => {
@@ -14,7 +19,7 @@ const fetchData = (key) => {
   return data ? JSON.parse(data) : false;
 };
 
-const saveToDb = (key, data) => {
+export const saveToDb = (key, data) => {
   localStorage.setItem(key, JSON.stringify(data));
 };
 
@@ -88,3 +93,9 @@ const addTask = (e) => {
 
 // add task event
 addButton.addEventListener("click", addTask);
+
+const initDataONStartup = () => {
+  fetchData("darkModeFlag") && toggleTheme();
+};
+
+initDataONStartup();
