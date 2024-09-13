@@ -10,5 +10,4 @@ export const TaskListLink = document.querySelector(".TaskList__link");
 export const addButton = document.querySelector(".TaskSearchBar__button");
 //delete button
 export const getDeletButtons = () => document.querySelectorAll(".TaskList__deleteIcon");
-
 export const getCheckboxElements = () => document.querySelectorAll(".TaskList__checkbox");
