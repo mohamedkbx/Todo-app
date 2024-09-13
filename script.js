@@ -5,8 +5,17 @@ import {
   addButton,
   getDeletButtons,
   appElement,
+  getCheckboxElements,
 } from "./scripts/elements";
 //DArk Theme
+const renderEmptyState = (tasks) => {
+  if (!tasks.length) {
+    taskList.innerHTML = `<li class='EmptyList'>
+    <img class='EmptyList__img' src="./assets/icon-empty.svg" alt="list is empty" />
+    <p>قائمة المهام فارغة</p>
+  </li>`;
+  }
+};
 
 function toggleTheme() {
   appElement.classList.toggle("App--isDark");
@@ -47,11 +56,15 @@ const renderTaskList = (tasks) => {
   taskList.innerHTML = alltaskList;
   inputElement.value = "";
   inputElement.focus();
+  renderEmptyState(tasks);
 };
 
 const initTasks = () => {
   getDeletButtons().forEach((icon, index) => {
     icon.addEventListener("click", () => deletTask(index));
+  });
+  getCheckboxElements().forEach((box, indx) => {
+    box.addEventListener("click", (e) => toggleTask(e, indx));
   });
 };
 
@@ -100,3 +113,11 @@ const initDataONStartup = () => {
 };
 
 initDataONStartup();
+
+const toggleTask = (e, index) => {
+  const tasks = fetchData("tasks");
+
+  e.currentTarget.parentElement.classList.toggle("TaskList__taskContent--isActive");
+  tasks[index].isCompleted = !tasks[index].isCompleted;
+  saveToDb("tasks", tasks);
+};
