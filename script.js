@@ -78,7 +78,7 @@ const addTask = (e) => {
   // task component
   const task = {
     value: taskValue,
-    isCompleted: true,
+    isCompleted: false,
   };
 
   //store & fetch the Tasks
@@ -96,6 +96,7 @@ addButton.addEventListener("click", addTask);
 
 const initDataONStartup = () => {
   fetchData("darkModeFlag") && toggleTheme();
+  renderTaskList(fetchData("tasks"));
 };
 
 initDataONStartup();
