@@ -5,6 +5,7 @@ export const appElement = document.querySelector(".App");
 // add Task Elements
 export const inputElement = document.querySelector("#search-input");
 export const taskList = document.querySelector(".TaskList__list");
+export const TaskListLink = document.querySelector(".TaskList__link");
 //add taskbutton
 export const addButton = document.querySelector(".TaskSearchBar__button");
 //delete button

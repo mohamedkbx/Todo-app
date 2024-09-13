@@ -6,6 +6,7 @@ import {
   getDeletButtons,
   appElement,
   getCheckboxElements,
+  TaskListLink,
 } from "./scripts/elements";
 //DArk Theme
 const renderEmptyState = (tasks) => {
@@ -121,3 +122,8 @@ const toggleTask = (e, index) => {
   tasks[index].isCompleted = !tasks[index].isCompleted;
   saveToDb("tasks", tasks);
 };
+
+TaskListLink.addEventListener("click", () => {
+  taskList.classList.toggle("TaskList__list--hideCompleted");
+  TaskListLink.classList.toggle("TaskList__link--isActive");
+});
