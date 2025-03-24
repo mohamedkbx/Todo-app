@@ -1,3 +1,5 @@
+import "../styles/styles.css"
+
 import {
   darkThemeToggleElement,
   inputElement,
@@ -7,7 +9,7 @@ import {
   appElement,
   getCheckboxElements,
   TaskListLink,
-} from "./scripts/elements";
+} from "./elements.js";
 //DArk Theme
 const renderEmptyState = (tasks) => {
   if (!tasks.length) {
