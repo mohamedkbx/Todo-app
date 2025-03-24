@@ -1,5 +1,7 @@
 import "../styles/styles.css"
-
+import emptylistIcon from "../assets/icon-empty.svg"
+import deletBasketIcon from "../assets/icon-basket.svg"
+import checkmarkIcon from "../assets/icon-checkmark.svg"
 import {
   darkThemeToggleElement,
   inputElement,
@@ -14,7 +16,7 @@ import {
 const renderEmptyState = (tasks) => {
   if (!tasks.length) {
     taskList.innerHTML = `<li class='EmptyList'>
-    <img class='EmptyList__img' src="./assets/icon-empty.svg" alt="list is empty" />
+    <img class='EmptyList__img' src=${emptylistIcon} alt="list is empty" />
     <p>قائمة المهام فارغة</p>
   </li>`;
   }
@@ -43,13 +45,13 @@ const renderTaskList = (tasks) => {
       task.isCompleted ? " TaskList__taskContent--isActive" : ""
     }" >
         <div class='TaskList__checkbox' tabindex="0" role="button">
-          <img class='TaskList__checkboxImg' src="./assets/icon-checkmark.svg" alt="checkmark" />
+          <img class='TaskList__checkboxImg' src=${checkmarkIcon} alt="checkmark" />
         </div>
         <div class='TaskList__valueContent'>
           <p class='TaskList__value'>
             ${task.value}
           </p>
-          <img src="./assets/icon-basket.svg"
+          <img src=${deletBasketIcon}
                class='TaskList__deleteIcon'
                alt="basket-icon"
           />
